@@ -4,6 +4,7 @@ exports.dates = void 0;
 exports.dates = [
     {
         username: "swati",
+        password: "1234",
         age: 25,
         gender: "Women",
         dates_gender: "Man",

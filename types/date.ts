@@ -1,6 +1,7 @@
 export type date = {
   username: string;
-  match: object | null;
+  password:string;
+  match: string | null;
   gender: "Man" | "Women";
   age: number;
   dates_gender: "Man" | "Women";

@@ -20,16 +20,8 @@ router.post("/", function (req, res) {
                 date.gender == user.dates_gender;
         });
         if (match) {
-            var userCopy = {
-                username: user.username,
-                age: user.age,
-                age_range: user.age_range,
-                dates_gender: user.dates_gender,
-                gender: user.gender,
-                match: user.match,
-            };
-            user.match = match;
-            match.match = userCopy;
+            user.match = match.username;
+            match.match = user.username;
             date_1.dates.push(user);
         }
         else {

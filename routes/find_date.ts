@@ -26,17 +26,8 @@ router.post("/", (req, res) => {
     );
 
     if (match) {
-      const userCopy: date = {
-        username: user.username,
-        age: user.age,
-        age_range: user.age_range,
-        dates_gender: user.dates_gender,
-        gender: user.gender,
-        match: user.match,
-      };
-
-      user.match = match;
-      match.match = userCopy;
+      user.match = match.username;
+      match.match = user.username;
       dates.push(user);
     } else {
       dates.push(user);
