@@ -10,11 +10,11 @@ router.post("/", async (req, res) => {
 
 
   if (user == null) {
-    const user = await Datemodel.create({
+    const newUser = await Datemodel.create({
       username: req.body.username,
       password: req.body.password,
     });
-    user.save();
+    newUser.save();
     res.send("new user created");
   } else {
     res.send("username already exists");

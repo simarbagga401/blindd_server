@@ -8,7 +8,10 @@ var Date = new mongoose_1.default.Schema({
     match: Object,
     gender: String,
     age: Number,
-    age_range: Array,
+    age_range: {
+        type: Array,
+        defualt: undefined,
+    },
     dates_gender: String,
 });
 exports.Datemodel = mongoose_1.default.model("Dates", Date);

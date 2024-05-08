@@ -1,16 +1,13 @@
-import { dates } from "../data/date";
-import type { date } from "../types/date";
-const express = require('express');
+import { Datemodel } from "../data/DatesSchema";
+const express = require("express");
 const router = new express.Router();
 
-router.post("/", (req, res) => {
-  const match = dates.find((date:date) => date.username == req.body.username);
+router.post("/", async (req, res) => {
+  const match = await Datemodel.findOne({
+    username: req.body.username,
+  }).exec();
 
-  if (match) {
-    res.send(match);
-  } else {
-    res.send("user does'nt exists");
-  }
+  if (match) res.send(match.match);
 });
 
 export default router;

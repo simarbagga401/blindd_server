@@ -40,7 +40,7 @@ var DatesSchema_1 = require("../data/DatesSchema");
 var express = require("express");
 var router = new express.Router();
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, user_1;
+    var user, newUser;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({
@@ -54,8 +54,8 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         password: req.body.password,
                     })];
             case 2:
-                user_1 = _a.sent();
-                user_1.save();
+                newUser = _a.sent();
+                newUser.save();
                 res.send("new user created");
                 return [3 /*break*/, 4];
             case 3:

@@ -1,37 +1,39 @@
-import { dates } from "../data/date";
-import type { date } from "../types/date";
+import { Datemodel } from "../data/DatesSchema";
 
 const express = require("express");
 const router = new express.Router();
 
-router.post("/", (req, res) => {
-  const user: date = req.body;
+router.post("/", async (req, res) => {
+  const user = req.body;
+  res.send("user is matching");
 
-  const userAlreadyExists = dates.find(
-    (date: date) => date.username == user.username
-  );
+  const match = await Datemodel.findOne()
+    .where("gender")
+    .equals(user.dates_gender)
+    .where("dates_gender")
+    .equals(user.gender)
+    .where("age")
+    .gte(user.age_range[0])
+    .where("age")
+    .lte(user.age_range[1])
+    .where("age_range.0")
+    .lte(parseInt(user.age))
+    .where("age_range.1")
+    .gte(parseInt(user.age));
 
-  if (userAlreadyExists) {
-    res.send("user already exists");
-  } else {
-    res.send("user is matching");
-    const match = dates.find(
-      (date: date) =>
-        user.age >= date.age_range[0] &&
-        user.age <= date.age_range[1] &&
-        date.age >= user.age_range[0] &&
-        date.age >= user.age_range[1] &&
-        user.gender == date.dates_gender &&
-        date.gender == user.dates_gender 
+  console.log(match);
+
+  if (match != null) {
+    user.match = match.username;
+    await Datemodel.updateOne(
+      { username: match.username },
+      { match: user.username }
     );
-
-    if (match) {
-      user.match = match.username;
-      match.match = user.username;
-      dates.push(user);
-    } else {
-      dates.push(user);
-    }
+    const newUser = await Datemodel.create(user);
+    newUser.save();
+  } else {
+    const newUser = await Datemodel.create(user);
+    newUser.save();
   }
 });
 

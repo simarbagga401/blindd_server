@@ -2,8 +2,8 @@ export type date = {
   username: string;
   password:string;
   match: string | null;
-  gender: "Man" | "Women";
+  gender: "Man" | "Woman";
   age: number;
-  dates_gender: "Man" | "Women";
-  age_range: Array<number>;
+  dates_gender: "Man" | "Woman";
+  age_range: number[];
 };

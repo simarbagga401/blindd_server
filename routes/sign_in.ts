@@ -1,6 +1,4 @@
-import type { date } from "../types/date";
 import { Datemodel } from "../data/DatesSchema";
-import mongoose from "mongoose";
 
 const express = require("express");
 const router = new express.Router();
@@ -17,7 +15,6 @@ router.post("/", async (req, res) => {
     user.password == req.body.password
       ? res.send("sign in successful")
       : res.send("wrong password");
-    console.log(user,user.password)
   }
 });
 

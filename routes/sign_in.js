@@ -55,7 +55,6 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                     user.password == req.body.password
                         ? res.send("sign in successful")
                         : res.send("wrong password");
-                    console.log(user, user.password);
                 }
                 return [2 /*return*/];
         }
