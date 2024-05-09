@@ -6,11 +6,12 @@ const Date = new mongoose.Schema({
   match: Object,
   gender: String,
   age: Number,
-  age_range: {
+  age_range:{
     type: Array,
     defualt: undefined,
   },
   dates_gender: String,
+  date_location:String
 });
 
 export const Datemodel = mongoose.model("Dates", Date);

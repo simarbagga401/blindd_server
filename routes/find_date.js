@@ -39,12 +39,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DatesSchema_1 = require("../data/DatesSchema");
 var express = require("express");
 var router = new express.Router();
+var dateLocations = [
+    "Bombay to Barcelona Library Café (Marol)",
+    "Lotus Cafe (Juhu)",
+    "MoMo Cafe (Andheri Kurla Road)",
+    "The Nutcracker (Gandhi Marg)",
+    "Pondichery Cafe (Bandra East)",
+];
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, match;
+    var user, dateLocation, match;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 user = req.body;
+                dateLocation = dateLocations[Math.floor(Math.random() * dateLocations.length)];
                 res.send("user is matching");
                 return [4 /*yield*/, DatesSchema_1.Datemodel.findOne()
                         .where("match")
@@ -65,7 +73,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 match = _a.sent();
                 if (!(match != null)) return [3 /*break*/, 4];
                 user.match = match.username;
-                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: match.username }, { match: user.username })];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: match.username }, { match: user.username, date_location: dateLocation })];
             case 2:
                 _a.sent();
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
@@ -74,6 +82,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         age_range: user.age_range,
                         gender: user.gender,
                         dates_gender: user.dates_gender,
+                        date_location: dateLocation
                     })];
             case 3:
                 _a.sent();

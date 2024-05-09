@@ -2,9 +2,19 @@ import { Datemodel } from "../data/DatesSchema";
 
 const express = require("express");
 const router = new express.Router();
+const dateLocations = [
+  "Bombay to Barcelona Library Café (Marol)",
+  "Lotus Cafe (Juhu)",
+  "MoMo Cafe (Andheri Kurla Road)",
+  "The Nutcracker (Gandhi Marg)",
+  "Pondichery Cafe (Bandra East)",
+];
 
 router.post("/", async (req, res) => {
   const user = req.body;
+  const dateLocation =
+    dateLocations[Math.floor(Math.random() * dateLocations.length)];
+
   res.send("user is matching");
 
   const match = await Datemodel.findOne()
@@ -27,7 +37,7 @@ router.post("/", async (req, res) => {
     user.match = match.username;
     await Datemodel.updateOne(
       { username: match.username },
-      { match: user.username }
+      { match: user.username , date_location:dateLocation}
     );
 
     await Datemodel.updateOne(
@@ -38,6 +48,7 @@ router.post("/", async (req, res) => {
         age_range: user.age_range,
         gender: user.gender,
         dates_gender: user.dates_gender,
+        date_location:dateLocation
       }
     );
   } else {
