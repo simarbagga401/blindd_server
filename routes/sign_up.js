@@ -52,6 +52,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [4 /*yield*/, DatesSchema_1.Datemodel.create({
                         username: req.body.username,
                         password: req.body.password,
+                        match: null
                     })];
             case 2:
                 newUser = _a.sent();

@@ -8,13 +8,12 @@ router.post("/", async (req, res) => {
     username: req.body.username,
   }).exec();
 
-
   if (user == null) {
-    res.send("user does'nt exists");
+    res.send({ msg: "user does'nt exists" });
   } else {
     user.password == req.body.password
-      ? res.send("sign in successful")
-      : res.send("wrong password");
+      ? res.send({ msg: "sign in successful", match: user.match })
+      : res.send({ msg: "wrong password" });
   }
 });
 

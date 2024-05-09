@@ -3,11 +3,16 @@ const express = require("express");
 const router = new express.Router();
 
 router.post("/", async (req, res) => {
-  const match = await Datemodel.findOne({
+  const user = await Datemodel.findOne({
     username: req.body.username,
   }).exec();
 
-  if (match) res.send(match.match);
+  if (user?.match == "not found") {
+    res.send("not found");
+  } else {
+    const match = await Datemodel.findOne({ username: user?.match });
+    if (user) res.send(match);
+  }
 });
 
 export default router;

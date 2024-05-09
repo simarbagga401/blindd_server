@@ -40,13 +40,15 @@ var DatesSchema_1 = require("../data/DatesSchema");
 var express = require("express");
 var router = new express.Router();
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, match, newUser, newUser;
+    var user, match;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 user = req.body;
                 res.send("user is matching");
                 return [4 /*yield*/, DatesSchema_1.Datemodel.findOne()
+                        .where("match")
+                        .equals("not found")
                         .where("gender")
                         .equals(user.dates_gender)
                         .where("dates_gender")
@@ -61,21 +63,30 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         .gte(parseInt(user.age))];
             case 1:
                 match = _a.sent();
-                console.log(match);
                 if (!(match != null)) return [3 /*break*/, 4];
                 user.match = match.username;
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: match.username }, { match: user.username })];
             case 2:
                 _a.sent();
-                return [4 /*yield*/, DatesSchema_1.Datemodel.create(user)];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
+                        match: match.username,
+                        age: user.age,
+                        age_range: user.age_range,
+                        gender: user.gender,
+                        dates_gender: user.dates_gender,
+                    })];
             case 3:
-                newUser = _a.sent();
-                newUser.save();
+                _a.sent();
                 return [3 /*break*/, 6];
-            case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.create(user)];
+            case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
+                    age: user.age,
+                    age_range: user.age_range,
+                    gender: user.gender,
+                    dates_gender: user.dates_gender,
+                    match: "not found",
+                })];
             case 5:
-                newUser = _a.sent();
-                newUser.save();
+                _a.sent();
                 _a.label = 6;
             case 6: return [2 /*return*/];
         }

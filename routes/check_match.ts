@@ -1,5 +1,4 @@
 import { Datemodel } from "../data/DatesSchema";
-
 const express = require("express");
 const router = new express.Router();
 
@@ -8,18 +7,8 @@ router.post("/", async (req, res) => {
     username: req.body.username,
   }).exec();
 
-
-  if (user == null) {
-    const newUser = await Datemodel.create({
-      username: req.body.username,
-      password: req.body.password,
-      match:null
-    });
-    newUser.save();
-    res.send("new user created");
-  } else {
-    res.send("username already exists");
-  }
+  const match = user?.match; 
+  if (user) res.send(match);
 });
 
 export default router;
