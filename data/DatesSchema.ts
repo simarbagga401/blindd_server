@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const Date = new mongoose.Schema({
   username: String,
   password: String,
+  instagram: String,
   match: Object,
   gender: String,
   age: Number,

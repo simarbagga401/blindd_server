@@ -44,6 +44,7 @@ router.post("/", async (req, res) => {
       { username: user.username },
       {
         match: match.username,
+        instagram:user.instagram,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,
@@ -55,6 +56,7 @@ router.post("/", async (req, res) => {
     await Datemodel.updateOne(
       { username: user.username },
       {
+        instagram:user.instagram,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,

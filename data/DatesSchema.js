@@ -5,6 +5,7 @@ var mongoose_1 = require("mongoose");
 var Date = new mongoose_1.default.Schema({
     username: String,
     password: String,
+    instagram: String,
     match: Object,
     gender: String,
     age: Number,

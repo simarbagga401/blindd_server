@@ -78,6 +78,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 _a.sent();
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
                         match: match.username,
+                        instagram: user.instagram,
                         age: user.age,
                         age_range: user.age_range,
                         gender: user.gender,
@@ -88,6 +89,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 _a.sent();
                 return [3 /*break*/, 6];
             case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
+                    instagram: user.instagram,
                     age: user.age,
                     age_range: user.age_range,
                     gender: user.gender,
