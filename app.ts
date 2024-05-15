@@ -9,11 +9,11 @@ import "./utils/mongodb";
 
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const cors = require("cors");
 app.use(
   cors({
-    origin: "*", //change at deployment
+    origin: "https://main--quickyy.netlify.app/", //change at deployment
   })
 );
 app.use(express.urlencoded({ extended: false }));

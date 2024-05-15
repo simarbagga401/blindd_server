@@ -10,10 +10,10 @@ var upload_image_1 = require("./routes/upload_image");
 require("./utils/mongodb");
 var express = require("express");
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 var cors = require("cors");
 app.use(cors({
-    origin: "*", //change at deployment
+    origin: "https://main--quickyy.netlify.app/", //change at deployment
 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "5mb" }));

@@ -53,7 +53,6 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 0:
                 user = req.body;
                 dateLocation = dateLocations[Math.floor(Math.random() * dateLocations.length)];
-                console.log(user);
                 res.send("user is matching");
                 return [4 /*yield*/, DatesSchema_1.Datemodel.findOne()
                         .where("match")

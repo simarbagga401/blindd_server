@@ -14,7 +14,6 @@ router.post("/",  async (req, res) => {
   const user = req.body;
   const dateLocation =
     dateLocations[Math.floor(Math.random() * dateLocations.length)];
-    console.log(user)
 
   res.send("user is matching");
 
