@@ -5,6 +5,7 @@ import check_match_routes from "./routes/check_match";
 import sign_in_routes from "./routes/sign_in";
 import sign_up_routes from "./routes/sign_up";
 import upload_image_routes from "./routes/upload_image";
+import retry_date_routes from "./routes/retry_date"
 import "./utils/mongodb";
 
 const express = require("express");
@@ -24,6 +25,7 @@ app.use("/sign_up", sign_up_routes);
 app.use("/upload_image", upload_image_routes);
 app.use("/check_match", check_match_routes);
 app.use("/find_date", find_date_routes);
+app.use("/retry_date", retry_date_routes);
 app.use("/find_match", find_match_routes);
 
 app.listen(port, () => {

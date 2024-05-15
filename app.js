@@ -7,6 +7,7 @@ var check_match_1 = require("./routes/check_match");
 var sign_in_1 = require("./routes/sign_in");
 var sign_up_1 = require("./routes/sign_up");
 var upload_image_1 = require("./routes/upload_image");
+var retry_date_1 = require("./routes/retry_date");
 require("./utils/mongodb");
 var express = require("express");
 var app = express();
@@ -22,6 +23,7 @@ app.use("/sign_up", sign_up_1.default);
 app.use("/upload_image", upload_image_1.default);
 app.use("/check_match", check_match_1.default);
 app.use("/find_date", find_date_1.default);
+app.use("/retry_date", retry_date_1.default);
 app.use("/find_match", find_match_1.default);
 app.listen(port, function () {
     console.log("app running");
