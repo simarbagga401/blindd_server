@@ -1,4 +1,4 @@
-import { Datemodel } from "../data/DatesSchema";
+import { Datemodel } from "../utils/DatesSchema";
 
 const express = require("express");
 const router = new express.Router();
@@ -10,10 +10,11 @@ const dateLocations = [
   "Pondichery Cafe (Bandra East)",
 ];
 
-router.post("/", async (req, res) => {
+router.post("/",  async (req, res) => {
   const user = req.body;
   const dateLocation =
     dateLocations[Math.floor(Math.random() * dateLocations.length)];
+    console.log(user)
 
   res.send("user is matching");
 
@@ -37,26 +38,26 @@ router.post("/", async (req, res) => {
     user.match = match.username;
     await Datemodel.updateOne(
       { username: match.username },
-      { match: user.username , date_location:dateLocation}
+      { match: user.username, date_location: dateLocation }
     );
 
     await Datemodel.updateOne(
       { username: user.username },
       {
         match: match.username,
-        instagram:user.instagram,
+        instagram: user.instagram,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,
         dates_gender: user.dates_gender,
-        date_location:dateLocation
+        date_location: dateLocation,
       }
     );
   } else {
     await Datemodel.updateOne(
       { username: user.username },
       {
-        instagram:user.instagram,
+        instagram: user.instagram,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,

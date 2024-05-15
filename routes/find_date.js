@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var DatesSchema_1 = require("../data/DatesSchema");
+var DatesSchema_1 = require("../utils/DatesSchema");
 var express = require("express");
 var router = new express.Router();
 var dateLocations = [
@@ -53,6 +53,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 0:
                 user = req.body;
                 dateLocation = dateLocations[Math.floor(Math.random() * dateLocations.length)];
+                console.log(user);
                 res.send("user is matching");
                 return [4 /*yield*/, DatesSchema_1.Datemodel.findOne()
                         .where("match")
@@ -83,7 +84,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         age_range: user.age_range,
                         gender: user.gender,
                         dates_gender: user.dates_gender,
-                        date_location: dateLocation
+                        date_location: dateLocation,
                     })];
             case 3:
                 _a.sent();

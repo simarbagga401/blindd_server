@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var DatesSchema_1 = require("../data/DatesSchema");
+var DatesSchema_1 = require("../utils/DatesSchema");
 var express = require("express");
 var router = new express.Router();
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {

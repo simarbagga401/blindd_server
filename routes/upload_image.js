@@ -39,25 +39,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DatesSchema_1 = require("../utils/DatesSchema");
 var express = require("express");
 var router = new express.Router();
-router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, match;
+var multer = require("multer");
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
+var cloudinary_1 = require("cloudinary");
+cloudinary_1.v2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET, // Click 'View Credentials' below to copy your API secret
+});
+router.post("/", upload.single("file"), function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var streamifier, cld_upload_stream;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({
-                    username: req.body.username,
-                }).exec()];
+            case 0:
+                streamifier = require("streamifier");
+                return [4 /*yield*/, cloudinary_1.v2.uploader.upload_stream({
+                        folder: "images",
+                    }, function (error, result) {
+                        if (error)
+                            res.status(500).send("internal server error");
+                        else {
+                            DatesSchema_1.Datemodel.updateOne({ username: req.body.username }, { userImageLink: result === null || result === void 0 ? void 0 : result.secure_url })
+                                .then(function (msg) { return console.log("image uploaded"); })
+                                .catch(function (err) { return console.log(err); });
+                            res.send("image uploaded successfully");
+                        }
+                    })];
             case 1:
-                user = _a.sent();
-                if (!((user === null || user === void 0 ? void 0 : user.match) == "not found")) return [3 /*break*/, 2];
-                res.send("not found");
-                return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({ username: user === null || user === void 0 ? void 0 : user.match })];
-            case 3:
-                match = _a.sent();
-                if (user)
-                    res.send(match);
-                _a.label = 4;
-            case 4: return [2 /*return*/];
+                cld_upload_stream = _a.sent();
+                streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+                return [2 /*return*/];
         }
     });
 }); });

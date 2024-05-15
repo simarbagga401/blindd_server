@@ -1,4 +1,4 @@
-import { Datemodel } from "../data/DatesSchema";
+import { Datemodel } from "../utils/DatesSchema";
 const express = require("express");
 const router = new express.Router();
 
