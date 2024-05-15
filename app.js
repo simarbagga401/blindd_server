@@ -13,7 +13,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var cors = require("cors");
 app.use(cors({
-    origin: "https://quickyy.netlify.app/", //change at deployment
+    origin: "*", //change at deployment
 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "5mb" }));
