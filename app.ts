@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://main--quickyy.netlify.app/", //change at deployment
+    origin: "https://quickyy.netlify.app/", //change at deployment
   })
 );
 app.use(express.urlencoded({ extended: false }));
