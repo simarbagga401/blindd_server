@@ -55,7 +55,13 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 3:
                 match = _a.sent();
                 if (user)
-                    res.send(match);
+                    res.send({
+                        username: user.username,
+                        userImageLink: user.userImageLink,
+                        instagram: user.instagram,
+                        age: user.age,
+                        dates_location: user.date_location,
+                    });
                 _a.label = 4;
             case 4: return [2 /*return*/];
         }

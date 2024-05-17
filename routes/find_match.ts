@@ -11,7 +11,14 @@ router.post("/", async (req, res) => {
     res.send("not found");
   } else {
     const match = await Datemodel.findOne({ username: user?.match });
-    if (user) res.send(match);
+    if (user)
+      res.send({
+        username: user.username,
+        userImageLink: user.userImageLink,
+        instagram: user.instagram,
+        age: user.age,
+        dates_location: user.date_location,
+      });
   }
 });
 
