@@ -60,7 +60,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         userImageLink: match.userImageLink,
                         instagram: match.instagram,
                         age: match.age,
-                        dates_location: match.date_location,
+                        date_location: match.date_location,
                     });
                 _a.label = 4;
             case 4: return [2 /*return*/];

@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
         userImageLink: match.userImageLink,
         instagram: match.instagram,
         age: match.age,
-        dates_location: match.date_location,
+        date_location: match.date_location,
       });
   }
 });
