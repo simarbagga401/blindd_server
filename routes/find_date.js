@@ -47,14 +47,14 @@ var dateLocations = [
     "Pondichery Cafe (Bandra East)",
 ];
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, dateLocation, match;
+    var user, dateLocation, matches, randomIndex, match;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 user = req.body;
                 dateLocation = dateLocations[Math.floor(Math.random() * dateLocations.length)];
                 res.send("user is matching");
-                return [4 /*yield*/, DatesSchema_1.Datemodel.findOne()
+                return [4 /*yield*/, DatesSchema_1.Datemodel.find()
                         .where("match")
                         .equals("not found")
                         .where("gender")
@@ -70,7 +70,9 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         .where("age_range.1")
                         .gte(parseInt(user.age))];
             case 1:
-                match = _a.sent();
+                matches = _a.sent();
+                randomIndex = Math.floor(Math.random() * matches.length);
+                match = matches[randomIndex];
                 if (!(match != null)) return [3 /*break*/, 4];
                 user.match = match.username;
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: match.username }, { match: user.username, date_location: dateLocation })];

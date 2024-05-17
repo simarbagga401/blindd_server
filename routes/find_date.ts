@@ -10,14 +10,14 @@ const dateLocations = [
   "Pondichery Cafe (Bandra East)",
 ];
 
-router.post("/",  async (req, res) => {
+router.post("/", async (req, res) => {
   const user = req.body;
   const dateLocation =
     dateLocations[Math.floor(Math.random() * dateLocations.length)];
 
   res.send("user is matching");
 
-  const match = await Datemodel.findOne()
+  const matches = await Datemodel.find()
     .where("match")
     .equals("not found")
     .where("gender")
@@ -32,6 +32,9 @@ router.post("/",  async (req, res) => {
     .lte(parseInt(user.age))
     .where("age_range.1")
     .gte(parseInt(user.age));
+
+  const randomIndex = Math.floor(Math.random() * matches.length);
+  const match = matches[randomIndex];
 
   if (match != null) {
     user.match = match.username;
