@@ -18,6 +18,8 @@ router.post("/", async (req, res) => {
   res.send("user is matching");
 
   const matches = await Datemodel.find()
+    .where("match.username")
+    .ne(user.username)
     .where("match")
     .equals("not found")
     .where("gender")
