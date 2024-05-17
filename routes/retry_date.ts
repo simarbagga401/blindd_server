@@ -3,15 +3,16 @@ const express = require("express");
 const router = new express.Router();
 
 router.post("/", async (req, res) => {
+  const user = await Datemodel.findOne({ username: req.body.username }).exec();
+
+  const match = user?.match;
+
   await Datemodel.findOneAndUpdate(
-    { username: req.body.username },
+    { username: user?.username },
     { match: null }
   ).exec();
 
-  await Datemodel.findOneAndUpdate(
-    { username: req.body.match },
-    { match: null }
-  ).exec();
+  await Datemodel.findOneAndUpdate({ username: match }, { match: null }).exec();
 });
 
 export default router;

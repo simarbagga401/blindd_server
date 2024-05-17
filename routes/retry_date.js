@@ -40,13 +40,18 @@ var DatesSchema_1 = require("../utils/DatesSchema");
 var express = require("express");
 var router = new express.Router();
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var user, match;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: req.body.username }, { match: null }).exec()];
+            case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({ username: req.body.username }).exec()];
             case 1:
-                _a.sent();
-                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: req.body.match }, { match: null }).exec()];
+                user = _a.sent();
+                match = user === null || user === void 0 ? void 0 : user.match;
+                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: user === null || user === void 0 ? void 0 : user.username }, { match: null }).exec()];
             case 2:
+                _a.sent();
+                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: match }, { match: null }).exec()];
+            case 3:
                 _a.sent();
                 return [2 /*return*/];
         }
