@@ -35,6 +35,8 @@ router.post("/", async (req, res) => {
     .where("age_range.1")
     .gte(parseInt(user.age));
 
+    console.log(matches)
+
   const randomIndex = Math.floor(Math.random() * matches.length);
   const match = matches[randomIndex];
 

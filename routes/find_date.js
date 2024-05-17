@@ -73,6 +73,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         .gte(parseInt(user.age))];
             case 1:
                 matches = _a.sent();
+                console.log(matches);
                 randomIndex = Math.floor(Math.random() * matches.length);
                 match = matches[randomIndex];
                 if (!(match != null)) return [3 /*break*/, 4];
