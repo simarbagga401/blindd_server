@@ -50,7 +50,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: user === null || user === void 0 ? void 0 : user.username }, { match: null }).exec()];
             case 2:
                 _a.sent();
-                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: match }, { match: null }).exec()];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: match }, { match: "not found" }).exec()];
             case 3:
                 _a.sent();
                 return [2 /*return*/];

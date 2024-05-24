@@ -34,7 +34,6 @@ router.post("/", upload.single("file"), async (req, res) => {
   );
 
   streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
-  // console.log(req.body)
 });
 
 export default router;

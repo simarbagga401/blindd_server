@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     { match: null }
   ).exec();
 
-  await Datemodel.findOneAndUpdate({ username: match }, { match: null }).exec();
+  await Datemodel.findOneAndUpdate({ username: match }, { match: "not found" }).exec();
 });
 
 export default router;
