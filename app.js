@@ -18,7 +18,7 @@ var port = process.env.PORT || 8000;
 var cors = require("cors");
 var io = require("socket.io")(server, {
     cors: {
-        origin: "*",
+        origin: ["http://localhost:3000", "https://blinddd.netlify.app"], //change at deployment
     }
 });
 // Handle connection
@@ -26,7 +26,7 @@ io.on("connection", function (socket) {
     console.log("connected to socket"), (0, chat_1.handleSocketConnection)(socket);
 });
 app.use(cors({
-    origin: "*", //change at deployment
+    origin: ["http://localhost:3000", "https://blinddd.netlify.app"], //change at deployment
 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "5mb" }));

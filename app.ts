@@ -18,7 +18,7 @@ const cors = require("cors");
 
 const io = require("socket.io")(server,{
   cors:{
-    origin:"*",
+    origin: ["http://localhost:3000","https://blinddd.netlify.app"], //change at deployment
   }
 });
 
@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
 
 app.use(
   cors({
-    origin: "*", //change at deployment
+    origin: ["http://localhost:3000","https://blinddd.netlify.app"], //change at deployment
   })
 );
 app.use(express.urlencoded({ extended: false }));
