@@ -9,10 +9,22 @@ var sign_up_1 = require("./routes/sign_up");
 var upload_image_1 = require("./routes/upload_image");
 var retry_date_1 = require("./routes/retry_date");
 require("./utils/mongodb");
+var chat_1 = require("./sockets/chat");
+var http = require("http");
 var express = require("express");
 var app = express();
-var port = process.env.PORT || 3000;
+var server = http.createServer(app);
+var port = process.env.PORT || 8000;
 var cors = require("cors");
+var io = require("socket.io")(server, {
+    cors: {
+        origin: "*",
+    }
+});
+// Handle connection
+io.on("connection", function (socket) {
+    console.log("connected to socket"), (0, chat_1.handleSocketConnection)(socket);
+});
 app.use(cors({
     origin: "*", //change at deployment
 }));
@@ -25,6 +37,6 @@ app.use("/check_match", check_match_1.default);
 app.use("/find_date", find_date_1.default);
 app.use("/retry_date", retry_date_1.default);
 app.use("/find_match", find_match_1.default);
-app.listen(port, function () {
+server.listen(port, function () {
     console.log("app running");
 });
