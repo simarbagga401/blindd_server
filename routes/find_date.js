@@ -39,26 +39,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DatesSchema_1 = require("../utils/DatesSchema");
 var express = require("express");
 var router = new express.Router();
-var dateLocations = [
-    "Bombay to Barcelona Library Café (Marol)",
-    "Lotus Cafe (Juhu)",
-    "MoMo Cafe (Andheri Kurla Road)",
-    "The Nutcracker (Gandhi Marg)",
-    "Pondichery Cafe (Bandra East)",
-];
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, dateLocation, matches, randomIndex, match;
+    var user, matches, randomIndex, match;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 user = req.body;
-                dateLocation = dateLocations[Math.floor(Math.random() * dateLocations.length)];
                 res.send("user is matching");
                 return [4 /*yield*/, DatesSchema_1.Datemodel.find()
                         .where("match.email")
                         .ne(user.email)
                         .where("match")
                         .equals("not found")
+                        .where('state')
+                        .equals(user.state)
                         .where("gender")
                         .equals(user.dates_gender)
                         .where("dates_gender")
@@ -77,23 +71,26 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 match = matches[randomIndex];
                 if (!(match != null)) return [3 /*break*/, 4];
                 user.match = match.email;
-                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: match.email }, { match: user.email, date_location: dateLocation })];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: match.email }, { match: user.email, })];
             case 2:
                 _a.sent();
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: user.email }, {
                         match: match.email,
                         instagram: user.instagram,
+                        bio: user.bio,
+                        state: user.state,
                         age: user.age,
                         age_range: user.age_range,
                         gender: user.gender,
                         dates_gender: user.dates_gender,
-                        date_location: dateLocation,
                     })];
             case 3:
                 _a.sent();
                 return [3 /*break*/, 6];
             case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: user.email }, {
                     instagram: user.instagram,
+                    bio: user.bio,
+                    state: user.state,
                     age: user.age,
                     age_range: user.age_range,
                     gender: user.gender,

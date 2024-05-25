@@ -13,7 +13,8 @@ const Date = new mongoose.Schema({
     defualt: undefined,
   },
   dates_gender: String,
-  date_location: String,
+  bio: String,
+  state: String,
 });
 
 export const Datemodel = mongoose.model("Dates", Date);

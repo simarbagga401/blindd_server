@@ -2,18 +2,9 @@ import { Datemodel } from "../utils/DatesSchema";
 
 const express = require("express");
 const router = new express.Router();
-const dateLocations = [
-  "Bombay to Barcelona Library Café (Marol)",
-  "Lotus Cafe (Juhu)",
-  "MoMo Cafe (Andheri Kurla Road)",
-  "The Nutcracker (Gandhi Marg)",
-  "Pondichery Cafe (Bandra East)",
-];
 
 router.post("/", async (req, res) => {
   const user = req.body;
-  const dateLocation =
-    dateLocations[Math.floor(Math.random() * dateLocations.length)];
 
   res.send("user is matching");
 
@@ -22,6 +13,8 @@ router.post("/", async (req, res) => {
     .ne(user.email)
     .where("match")
     .equals("not found")
+    .where('state')
+    .equals(user.state)
     .where("gender")
     .equals(user.dates_gender)
     .where("dates_gender")
@@ -43,7 +36,7 @@ router.post("/", async (req, res) => {
     user.match = match.email;
     await Datemodel.updateOne(
       { email: match.email },
-      { match: user.email, date_location: dateLocation }
+      { match: user.email, }
     );
 
     await Datemodel.updateOne(
@@ -51,11 +44,12 @@ router.post("/", async (req, res) => {
       {
         match: match.email,
         instagram: user.instagram,
+        bio:user.bio,
+        state:user.state,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,
         dates_gender: user.dates_gender,
-        date_location: dateLocation,
       }
     );
   } else {
@@ -63,6 +57,8 @@ router.post("/", async (req, res) => {
       { email: user.email },
       {
         instagram: user.instagram,
+        bio:user.bio,
+        state:user.state,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,

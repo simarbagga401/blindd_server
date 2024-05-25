@@ -6,6 +6,7 @@ import sign_in_routes from "./routes/sign_in";
 import sign_up_routes from "./routes/sign_up";
 import upload_image_routes from "./routes/upload_image";
 import retry_date_routes from "./routes/retry_date";
+import profile_settings_routes from "./routes/profile_settings";
 import "./utils/mongodb";
 import { handleSocketConnection } from "./sockets/chat";
 
@@ -42,6 +43,7 @@ app.use("/check_match", check_match_routes);
 app.use("/find_date", find_date_routes);
 app.use("/retry_date", retry_date_routes);
 app.use("/find_match", find_match_routes);
+app.use("/profile_settings", profile_settings_routes);
 
 server.listen(port, () => {
   console.log("app running");

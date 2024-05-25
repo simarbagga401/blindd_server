@@ -15,6 +15,7 @@ var Date = new mongoose_1.default.Schema({
         defualt: undefined,
     },
     dates_gender: String,
-    date_location: String,
+    bio: String,
+    state: String,
 });
 exports.Datemodel = mongoose_1.default.model("Dates", Date);
