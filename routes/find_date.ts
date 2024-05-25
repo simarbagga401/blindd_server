@@ -18,8 +18,8 @@ router.post("/", async (req, res) => {
   res.send("user is matching");
 
   const matches = await Datemodel.find()
-    .where("match.username")
-    .ne(user.username)
+    .where("match.email")
+    .ne(user.email)
     .where("match")
     .equals("not found")
     .where("gender")
@@ -40,16 +40,16 @@ router.post("/", async (req, res) => {
   const match = matches[randomIndex];
 
   if (match != null) {
-    user.match = match.username;
+    user.match = match.email;
     await Datemodel.updateOne(
-      { username: match.username },
-      { match: user.username, date_location: dateLocation }
+      { email: match.email },
+      { match: user.email, date_location: dateLocation }
     );
 
     await Datemodel.updateOne(
-      { username: user.username },
+      { email: user.email },
       {
-        match: match.username,
+        match: match.email,
         instagram: user.instagram,
         age: user.age,
         age_range: user.age_range,
@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
     );
   } else {
     await Datemodel.updateOne(
-      { username: user.username },
+      { email: user.email },
       {
         instagram: user.instagram,
         age: user.age,

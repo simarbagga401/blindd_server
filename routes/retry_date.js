@@ -43,14 +43,14 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
     var user, match;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({ username: req.body.username }).exec()];
+            case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({ email: req.body.email }).exec()];
             case 1:
                 user = _a.sent();
                 match = user === null || user === void 0 ? void 0 : user.match;
-                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: user === null || user === void 0 ? void 0 : user.username }, { match: null }).exec()];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ email: user === null || user === void 0 ? void 0 : user.email }, { match: null }).exec()];
             case 2:
                 _a.sent();
-                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ username: match }, { match: "not found" }).exec()];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.findOneAndUpdate({ email: match }, { match: "not found" }).exec()];
             case 3:
                 _a.sent();
                 return [2 /*return*/];

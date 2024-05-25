@@ -60,7 +60,7 @@ router.post("/", upload.single("file"), function (req, res) { return __awaiter(v
                         if (error)
                             res.status(500).send("internal server error");
                         else {
-                            DatesSchema_1.Datemodel.updateOne({ username: req.body.username }, { userImageLink: result === null || result === void 0 ? void 0 : result.secure_url })
+                            DatesSchema_1.Datemodel.updateOne({ email: req.body.email }, { userImageLink: result === null || result === void 0 ? void 0 : result.secure_url })
                                 .then(function (msg) { return console.log("image uploaded"); })
                                 .catch(function (err) { return console.log(err); });
                             res.send("image uploaded successfully");

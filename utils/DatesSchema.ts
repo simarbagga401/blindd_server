@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const Date = new mongoose.Schema({
-  username: String,
+  email: String,
   password: String,
   userImageLink: String,
   instagram: String,

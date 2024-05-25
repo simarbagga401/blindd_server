@@ -44,13 +44,13 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({
-                    username: req.body.username,
+                    email: req.body.email,
                 }).exec()];
             case 1:
                 user = _a.sent();
                 if (!(user == null)) return [3 /*break*/, 3];
                 return [4 /*yield*/, DatesSchema_1.Datemodel.create({
-                        username: req.body.username,
+                        email: req.body.email,
                         password: req.body.password,
                         match: null
                     })];
@@ -60,7 +60,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 res.send("new user created");
                 return [3 /*break*/, 4];
             case 3:
-                res.send("username already exists");
+                res.send("email already exists");
                 _a.label = 4;
             case 4: return [2 /*return*/];
         }

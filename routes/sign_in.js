@@ -44,7 +44,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, DatesSchema_1.Datemodel.findOne({
-                    username: req.body.username,
+                    email: req.body.email,
                 }).exec()];
             case 1:
                 user = _a.sent();

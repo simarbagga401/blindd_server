@@ -55,8 +55,8 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 dateLocation = dateLocations[Math.floor(Math.random() * dateLocations.length)];
                 res.send("user is matching");
                 return [4 /*yield*/, DatesSchema_1.Datemodel.find()
-                        .where("match.username")
-                        .ne(user.username)
+                        .where("match.email")
+                        .ne(user.email)
                         .where("match")
                         .equals("not found")
                         .where("gender")
@@ -76,12 +76,12 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 randomIndex = Math.floor(Math.random() * matches.length);
                 match = matches[randomIndex];
                 if (!(match != null)) return [3 /*break*/, 4];
-                user.match = match.username;
-                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: match.username }, { match: user.username, date_location: dateLocation })];
+                user.match = match.email;
+                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: match.email }, { match: user.email, date_location: dateLocation })];
             case 2:
                 _a.sent();
-                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
-                        match: match.username,
+                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: user.email }, {
+                        match: match.email,
                         instagram: user.instagram,
                         age: user.age,
                         age_range: user.age_range,
@@ -92,7 +92,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 3:
                 _a.sent();
                 return [3 /*break*/, 6];
-            case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ username: user.username }, {
+            case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: user.email }, {
                     instagram: user.instagram,
                     age: user.age,
                     age_range: user.age_range,

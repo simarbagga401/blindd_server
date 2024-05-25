@@ -23,7 +23,7 @@ router.post("/", upload.single("file"), async (req, res) => {
       if (error) res.status(500).send("internal server error");
       else {
         Datemodel.updateOne(
-          { username: req.body.username },
+          { email: req.body.email },
           { userImageLink: result?.secure_url }
         )
           .then((msg) => console.log("image uploaded"))

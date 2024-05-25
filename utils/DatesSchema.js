@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Datemodel = void 0;
 var mongoose_1 = require("mongoose");
 var Date = new mongoose_1.default.Schema({
-    username: String,
+    email: String,
     password: String,
     userImageLink: String,
     instagram: String,

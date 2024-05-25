@@ -5,20 +5,20 @@ const router = new express.Router();
 
 router.post("/", async (req, res) => {
   const user = await Datemodel.findOne({
-    username: req.body.username,
+    email: req.body.email,
   }).exec();
 
 
   if (user == null) {
     const newUser = await Datemodel.create({
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
       match:null
     });
     newUser.save();
     res.send("new user created");
   } else {
-    res.send("username already exists");
+    res.send("email already exists");
   }
 });
 

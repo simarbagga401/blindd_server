@@ -4,16 +4,16 @@ const router = new express.Router();
 
 router.post("/", async (req, res) => {
   const user = await Datemodel.findOne({
-    username: req.body.username,
+    email: req.body.email,
   }).exec();
 
   if (user?.match == "not found") {
     res.send("not found");
   } else {
-    const match = await Datemodel.findOne({ username: user?.match });
+    const match = await Datemodel.findOne({ email: user?.match });
     if (user && match != null)
       res.send({
-        username: match.username,
+        email: match.email,
         userImageLink: match.userImageLink,
         instagram: match.instagram,
         age: match.age,

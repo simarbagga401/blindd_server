@@ -5,7 +5,7 @@ const router = new express.Router();
 
 router.post("/", async (req, res) => {
   const user = await Datemodel.findOne({
-    username: req.body.username,
+    email: req.body.email,
   }).exec();
 
   if (user == null) {

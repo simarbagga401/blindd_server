@@ -1,5 +1,5 @@
 export type date = {
-  username: string;
+  email: string;
   password:string;
   match: string | null;
   gender: "Man" | "Woman";
