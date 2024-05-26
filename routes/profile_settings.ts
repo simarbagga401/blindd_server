@@ -33,7 +33,6 @@ router.put("/", upload.single("file"), async (req, res) => {
       {
         password: req.body.password,
         instagram: req.body.instagram,
-        state: req.body.state,
         bio: req.body.bio,
       }
     );
@@ -53,7 +52,6 @@ router.put("/", upload.single("file"), async (req, res) => {
               userImageLink: result?.secure_url,
               password: req.body.password,
               instagram: req.body.instagram,
-              state: req.body.state,
               bio: req.body.bio,
             }
           )

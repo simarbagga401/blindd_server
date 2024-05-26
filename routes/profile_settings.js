@@ -76,7 +76,6 @@ router.put("/", upload.single("file"), function (req, res) { return __awaiter(vo
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: req.body.email }, {
                         password: req.body.password,
                         instagram: req.body.instagram,
-                        state: req.body.state,
                         bio: req.body.bio,
                     })];
             case 1:
@@ -94,7 +93,6 @@ router.put("/", upload.single("file"), function (req, res) { return __awaiter(vo
                                 userImageLink: result === null || result === void 0 ? void 0 : result.secure_url,
                                 password: req.body.password,
                                 instagram: req.body.instagram,
-                                state: req.body.state,
                                 bio: req.body.bio,
                             })
                                 .then(function (msg) { return console.log("image uploaded"); })
