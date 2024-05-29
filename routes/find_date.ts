@@ -33,7 +33,6 @@ router.post("/", async (req, res) => {
   const match = matches[randomIndex];
 
   if (match != null) {
-    sendMail(match.email,user.email)
     user.match = match.email;
     await Datemodel.updateOne({ email: match.email }, { match: user.email });
 
@@ -50,6 +49,7 @@ router.post("/", async (req, res) => {
         dates_gender: user.dates_gender,
       }
     );
+    sendMail(match.email,user.email)
   } else {
     await Datemodel.updateOne(
       { email: user.email },

@@ -71,7 +71,6 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 randomIndex = Math.floor(Math.random() * matches.length);
                 match = matches[randomIndex];
                 if (!(match != null)) return [3 /*break*/, 4];
-                (0, sendMail_1.sendMail)(match.email, user.email);
                 user.match = match.email;
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: match.email }, { match: user.email })];
             case 2:
@@ -88,6 +87,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                     })];
             case 3:
                 _a.sent();
+                (0, sendMail_1.sendMail)(match.email, user.email);
                 return [3 /*break*/, 6];
             case 4: return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: user.email }, {
                     instagram: user.instagram,
