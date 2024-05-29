@@ -20,7 +20,7 @@ var cors = require("cors");
 var io = require("socket.io")(server, {
     cors: {
         origin: ["http://localhost:3000", "https://blinddd.netlify.app"], //change at deployment
-    }
+    },
 });
 // Handle connection
 io.on("connection", function (socket) {

@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var DatesSchema_1 = require("../utils/DatesSchema");
+var sendMail_1 = require("../utils/sendMail");
 var express = require("express");
 var router = new express.Router();
 router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -51,7 +52,7 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         .ne(user.email)
                         .where("match")
                         .equals("not found")
-                        .where('state')
+                        .where("state")
                         .equals(user.state)
                         .where("gender")
                         .equals(user.dates_gender)
@@ -70,8 +71,9 @@ router.post("/", function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 randomIndex = Math.floor(Math.random() * matches.length);
                 match = matches[randomIndex];
                 if (!(match != null)) return [3 /*break*/, 4];
+                (0, sendMail_1.sendMail)(match.email, user.email);
                 user.match = match.email;
-                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: match.email }, { match: user.email, })];
+                return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: match.email }, { match: user.email })];
             case 2:
                 _a.sent();
                 return [4 /*yield*/, DatesSchema_1.Datemodel.updateOne({ email: user.email }, {

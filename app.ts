@@ -17,10 +17,10 @@ const server = http.createServer(app);
 const port = process.env.PORT || 8000;
 const cors = require("cors");
 
-const io = require("socket.io")(server,{
-  cors:{
-    origin: ["http://localhost:3000","https://blinddd.netlify.app"], //change at deployment
-  }
+const io = require("socket.io")(server, {
+  cors: {
+    origin: ["http://localhost:3000", "https://blinddd.netlify.app"], //change at deployment
+  },
 });
 
 // Handle connection
@@ -30,8 +30,8 @@ io.on("connection", (socket) => {
 
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://blinddd.netlify.app"], //change at deployment
-  })
+    origin: ["http://localhost:3000", "https://blinddd.netlify.app"], //change at deployment
+  }),
 );
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "5mb" }));

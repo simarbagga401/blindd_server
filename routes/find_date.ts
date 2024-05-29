@@ -1,4 +1,5 @@
 import { Datemodel } from "../utils/DatesSchema";
+import { sendMail } from "../utils/sendMail";
 
 const express = require("express");
 const router = new express.Router();
@@ -13,7 +14,7 @@ router.post("/", async (req, res) => {
     .ne(user.email)
     .where("match")
     .equals("not found")
-    .where('state')
+    .where("state")
     .equals(user.state)
     .where("gender")
     .equals(user.dates_gender)
@@ -28,24 +29,21 @@ router.post("/", async (req, res) => {
     .where("age_range.1")
     .gte(parseInt(user.age));
 
-
   const randomIndex = Math.floor(Math.random() * matches.length);
   const match = matches[randomIndex];
 
   if (match != null) {
+    sendMail(match.email,user.email)
     user.match = match.email;
-    await Datemodel.updateOne(
-      { email: match.email },
-      { match: user.email, }
-    );
+    await Datemodel.updateOne({ email: match.email }, { match: user.email });
 
     await Datemodel.updateOne(
       { email: user.email },
       {
         match: match.email,
         instagram: user.instagram,
-        bio:user.bio,
-        state:user.state,
+        bio: user.bio,
+        state: user.state,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,
@@ -57,8 +55,8 @@ router.post("/", async (req, res) => {
       { email: user.email },
       {
         instagram: user.instagram,
-        bio:user.bio,
-        state:user.state,
+        bio: user.bio,
+        state: user.state,
         age: user.age,
         age_range: user.age_range,
         gender: user.gender,
